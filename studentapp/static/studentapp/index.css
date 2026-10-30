@@ -1,0 +1,512 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+/* =================================
+   ASTRA - PREMIUM DESIGN SYSTEM
+================================= */
+
+:root {
+    --bg: #090612;
+    --bg-secondary: #100a20;
+    --surface: #171027;
+    --surface-light: #211638;
+
+    --primary: #8b5cf6;
+    --primary-light: #a78bfa;
+    --primary-dark: #5b21b6;
+
+    --gold: #e8bb55;
+    --gold-light: #ffe09a;
+
+    --text: #f8f4ff;
+    --muted: #aaa0bd;
+
+    --border: rgba(232, 187, 85, 0.18);
+    --shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+
+    --radius: 18px;
+}
+
+/* =================================
+   GLOBAL SETTINGS
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background:
+        radial-gradient(ellipse at 80% 10%, rgba(91, 33, 182, 0.22), transparent 45%),
+        var(--bg);
+
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+}
+
+a {
+    color: var(--gold);
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+a:hover {
+    color: var(--gold-light);
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    border-radius: 12px;
+}
+
+/* =================================
+   TYPOGRAPHY
+================================= */
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--text);
+    line-height: 1.25;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+h2 {
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+}
+
+h3 {
+    font-size: 1.4rem;
+}
+
+p {
+    color: var(--muted);
+    margin-bottom: 15px;
+}
+
+/* =================================
+   CONTAINER
+================================= */
+
+.container {
+    width: min(1150px, 90%);
+    margin: auto;
+}
+
+section {
+    padding: 75px 0;
+}
+
+/* =================================
+   NAVIGATION BAR
+================================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(9, 6, 18, 0.92);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav {
+    min-height: 78px;
+    width: 90%;
+    max-width: 1250px;
+    margin: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo,
+.brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 2px;
+}
+
+.nav-links,
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-links a {
+    color: var(--text);
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: var(--gold);
+}
+
+.menu-toggle {
+    display: none;
+}
+
+/* =================================
+   BUTTONS
+================================= */
+
+button,
+.btn,
+.btn-primary,
+.btn-secondary {
+    border: none;
+    border-radius: 10px;
+    padding: 13px 25px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.btn-primary,
+button[type="submit"] {
+    background: linear-gradient(135deg, #e8bb55, #b98229);
+    color: #160d22;
+    box-shadow: 0 5px 20px rgba(232, 187, 85, 0.18);
+}
+
+.btn-primary:hover,
+button[type="submit"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(232, 187, 85, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+}
+
+.btn-secondary:hover {
+    background: var(--gold);
+    color: var(--bg);
+}
+
+/* =================================
+   HERO SECTION
+================================= */
+
+.hero {
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 100px 0;
+
+    background:
+        radial-gradient(circle at 80% 40%, rgba(139, 92, 246, 0.3), transparent 40%),
+        linear-gradient(120deg, #0b0715, #1c1034);
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero h1 {
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: var(--gold);
+}
+
+.hero p {
+    font-size: 1.1rem;
+    max-width: 650px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* =================================
+   STATISTICS
+================================= */
+
+.stats,
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.stat-card {
+    background: var(--surface);
+    padding: 30px;
+    text-align: center;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.stat-card h2 {
+    color: var(--gold);
+}
+
+/* =================================
+   ASTROLOGER CARDS
+================================= */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.astro-card,
+.card {
+    background: linear-gradient(145deg, #211638, #120c20);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 25px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
+}
+
+.astro-card:hover,
+.card:hover {
+    transform: translateY(-7px);
+    border-color: var(--gold);
+}
+
+.astro-card img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+}
+
+.astro-card h3 {
+    margin: 18px 0 8px;
+}
+
+.rating {
+    color: var(--gold);
+}
+
+/* =================================
+   FILTERS AND SEARCH
+================================= */
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.filters input,
+.filters select {
+    flex: 1;
+    min-width: 180px;
+}
+
+/* =================================
+   FORMS - LOGIN & BOOKING
+================================= */
+
+form {
+    width: 100%;
+}
+
+.form-container {
+    max-width: 650px;
+    margin: 50px auto;
+    padding: 40px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--gold-light);
+    font-weight: 600;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 14px 16px;
+
+    background: #0d0917;
+    color: var(--text);
+
+    border: 1px solid #39294f;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(232, 187, 85, 0.1);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #827691;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* =================================
+   PROFILE PAGE
+================================= */
+
+.profile-card {
+    max-width: 850px;
+    margin: 50px auto;
+    padding: 35px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+}
+
+.profile-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--gold);
+}
+
+.profile-details {
+    margin-top: 25px;
+}
+
+.profile-details p {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+/* =================================
+   ALERT MESSAGES
+================================= */
+
+.messages,
+.alert {
+    padding: 15px 20px;
+    margin: 15px 0;
+    border-radius: 10px;
+    background: rgba(139, 92, 246, 0.13);
+    border: 1px solid var(--primary);
+    color: var(--text);
+}
+
+/* =================================
+   FOOTER
+================================= */
+
+footer,
+.site-footer {
+    padding: 45px 0 25px;
+    background: #07040e;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+footer p {
+    color: var(--muted);
+}
+
+/* =================================
+   RESPONSIVE DESIGN
+================================= */
+
+@media (max-width: 900px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .nav-links,
+    .nav-actions {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    .cards,
+    .stats,
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav {
+        flex-wrap: wrap;
+        padding: 15px 0;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 14px;
+    }
+
+    .hero {
+        min-height: 500px;
+        padding: 70px 0;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .form-container,
+    .profile-card {
+        padding: 22px;
+        margin: 25px auto;
+    }
+
+    section {
+        padding: 45px 0;
+    }
+}

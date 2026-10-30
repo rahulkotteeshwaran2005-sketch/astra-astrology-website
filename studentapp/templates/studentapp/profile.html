@@ -1,0 +1,140 @@
+{% extends "studentapp/base.html" %}
+
+{% block title %}{{ astrologer.name }} | ASTRA{% endblock %}
+
+{% block content %}
+
+<section class="profile-section">
+
+    <div class="profile-card">
+
+        <div class="profile-header">
+
+            <div class="profile-image">
+                {% if astrologer.image_url %}
+                    <img src="{{ astrologer.image_url }}" alt="{{ astrologer.name }}">
+                {% else %}
+                    <div class="avatar-placeholder">✦</div>
+                {% endif %}
+            </div>
+
+            <div class="profile-heading">
+
+                <p class="eyebrow">✦ ASTRA ASTROLOGER</p>
+
+                <h1>{{ astrologer.name }}</h1>
+
+                <p class="profile-title">
+                    {{ astrologer.title|default:"Astrology Consultant" }}
+                </p>
+
+                <div class="rating">
+                    ★ {{ astrologer.rating }}/5
+                    <span>({{ astrologer.review_count }} reviews)</span>
+                </div>
+
+                {% if astrologer.is_online %}
+                    <p class="online-text">● Online Now</p>
+                {% else %}
+                    <p class="offline-text">● Currently Offline</p>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <div class="profile-stats">
+
+            <div class="stat-box">
+                <h2>{{ astrologer.experience }}+</h2>
+                <p>Years Experience</p>
+            </div>
+
+            <div class="stat-box">
+                <h2>★ {{ astrologer.rating }}</h2>
+                <p>Average Rating</p>
+            </div>
+
+            <div class="stat-box">
+                <h2>{{ astrologer.review_count }}</h2>
+                <p>Reviews</p>
+            </div>
+
+            <div class="stat-box">
+                <h2>₹{{ astrologer.price_per_minute }}</h2>
+                <p>Per Minute</p>
+            </div>
+
+        </div>
+
+        <div class="profile-details">
+
+            <div class="detail-section">
+                <h2>About the Astrologer</h2>
+
+                <p>
+                    {{ astrologer.about|default:"This astrologer has not added an introduction yet."|linebreaksbr }}
+                </p>
+            </div>
+
+            <div class="detail-section">
+                <h2>Expertise</h2>
+
+                <div class="skills">
+                    {% for skill in astrologer.skill_list %}
+                        <span>{{ skill }}</span>
+                    {% empty %}
+                        <span>General Astrology</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <h2>Languages</h2>
+
+                <div class="skills">
+                    {% for language in astrologer.language_list %}
+                        <span>{{ language }}</span>
+                    {% empty %}
+                        <span>English</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <h2>Consultation Details</h2>
+
+                <p>Price: ₹{{ astrologer.price_per_minute }} / minute</p>
+
+                <p>Experience: {{ astrologer.experience }} years</p>
+
+                <p>
+                    Availability:
+                    {% if astrologer.is_online %}
+                        <span class="online-text">Online</span>
+                    {% else %}
+                        <span class="offline-text">Offline</span>
+                    {% endif %}
+                </p>
+            </div>
+
+        </div>
+
+        <div class="profile-action">
+
+            <h2>Ready to discover your cosmic path?</h2>
+
+            <p>Book a personal consultation with {{ astrologer.name }}.</p>
+
+            <a href="{% url 'studentapp:booking' astrologer.slug %}"
+               class="btn-primary">
+                Book a Consultation →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

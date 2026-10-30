@@ -1,0 +1,134 @@
+{% extends "studentapp/base.html" %}
+
+{% block title %}Book Consultation | ASTRA{% endblock %}
+
+{% block content %}
+
+<section class="booking-section">
+
+    <div class="booking-heading">
+        <p class="eyebrow">✦ PERSONAL CONSULTATION</p>
+        <h1>Book Your <span>Cosmic Session</span></h1>
+        <p>Choose your preferred time and tell us what you'd like to discuss.</p>
+    </div>
+
+    <div class="booking-container">
+
+        <div class="booking-info">
+            <div class="booking-symbol">✦</div>
+
+            <h2>{{ astrologer.name }}</h2>
+
+            <p>{{ astrologer.title|default:"Astrology Consultant" }}</p>
+
+            <div class="booking-details">
+                <p>★ {{ astrologer.rating }}/5 Rating</p>
+                <p>{{ astrologer.experience }} Years Experience</p>
+                <p>₹{{ astrologer.price_per_minute }} / minute</p>
+
+                {% if astrologer.is_online %}
+                    <p class="online-text">● Available Online</p>
+                {% else %}
+                    <p>● Currently Offline</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <form method="POST" class="booking-form">
+
+            {% csrf_token %}
+
+            <h2>Consultation Details</h2>
+
+            <div class="form-group">
+                <label for="customer_name">Full Name</label>
+                <input
+                    type="text"
+                    id="customer_name"
+                    name="customer_name"
+                    placeholder="Enter your name"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number (Optional)</label>
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="+91"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="consultation_type">Consultation Type</label>
+
+                <select id="consultation_type" name="consultation_type">
+                    <option value="Chat">Chat Consultation</option>
+                    <option value="Call">Call Consultation</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="preferred_date">Preferred Date</label>
+                    <input
+                        type="date"
+                        id="preferred_date"
+                        name="preferred_date"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="preferred_time">Preferred Time</label>
+                    <input
+                        type="time"
+                        id="preferred_time"
+                        name="preferred_time"
+                        required
+                    >
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="question">Your Question (Optional)</label>
+
+                <textarea
+                    id="question"
+                    name="question"
+                    rows="4"
+                    placeholder="What would you like guidance about?"
+                ></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary full-width">
+                Submit Booking Request →
+            </button>
+
+            <p class="form-note">
+                This demo saves a booking request only.
+                It does not process payments or start a live call.
+            </p>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

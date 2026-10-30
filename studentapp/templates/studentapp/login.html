@@ -1,0 +1,75 @@
+{% extends "studentapp/base.html" %}
+
+{% block title %}Login | ASTRA{% endblock %}
+
+{% block content %}
+
+<section class="auth-section">
+
+    <div class="auth-card">
+
+        <div class="auth-icon">✦</div>
+
+        <p class="eyebrow">✦ WELCOME BACK</p>
+
+        <h1>Welcome to <span>ASTRA</span></h1>
+
+        <p class="auth-description">
+            Your journey is written in the stars.
+            Sign in to continue exploring your cosmic path.
+        </p>
+
+        <form method="POST" class="auth-form">
+
+            {% csrf_token %}
+
+            <input
+                type="hidden"
+                name="next"
+                value="{{ next }}"
+            >
+
+            <div class="form-group">
+                <label for="username">Username</label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter your username"
+                    autocomplete="username"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="btn-primary full-width">
+                Sign In →
+            </button>
+
+        </form>
+
+        <div class="auth-footer">
+            <p>New to ASTRA?</p>
+            <p class="form-note">
+                Ask the administrator to create your account.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

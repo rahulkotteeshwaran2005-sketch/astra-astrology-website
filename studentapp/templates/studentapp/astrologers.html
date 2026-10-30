@@ -1,0 +1,134 @@
+{% extends "studentapp/base.html" %}
+
+{% block title %}Explore Astrologers | ASTRA{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+    <p class="eyebrow">✦ FIND YOUR COSMIC GUIDE</p>
+    <h1>Meet Our <span>Expert Astrologers</span></h1>
+    <p>Discover experienced professionals ready to guide your journey.</p>
+</section>
+
+<section class="directory">
+
+    <form method="GET" class="filter-form">
+        <input
+            type="text"
+            name="q"
+            placeholder="Search astrologers..."
+            value="{{ search }}"
+        >
+
+        <input
+            type="text"
+            name="skill"
+            placeholder="Search by skill..."
+            value="{{ selected_skill }}"
+        >
+
+        <select name="availability">
+            <option value="">All astrologers</option>
+            <option value="online"
+                {% if availability == "online" %}selected{% endif %}>
+                Online only
+            </option>
+        </select>
+
+        <button type="submit" class="btn-primary">Search</button>
+        <a href="{% url 'studentapp:astrologers' %}" class="btn-secondary">Reset</a>
+    </form>
+
+    <div class="astrologer-grid">
+
+        {% for astrologer in page_obj %}
+
+        <article class="astrologer-card">
+
+            <div class="astrologer-image">
+                {% if astrologer.image_url %}
+                    <img src="{{ astrologer.image_url }}" alt="{{ astrologer.name }}">
+                {% else %}
+                    <div class="avatar-placeholder">✦</div>
+                {% endif %}
+
+                {% if astrologer.is_online %}
+                    <span class="online-badge">● Online</span>
+                {% else %}
+                    <span class="offline-badge">● Offline</span>
+                {% endif %}
+            </div>
+
+            <div class="card-content">
+                <p class="eyebrow">ASTRA ASTROLOGER</p>
+
+                <h2>{{ astrologer.name }}</h2>
+
+                <p class="astrologer-title">
+                    {{ astrologer.title|default:"Astrology Consultant" }}
+                </p>
+
+                <div class="rating">
+                    ★ {{ astrologer.rating }}/5
+                    <span>({{ astrologer.review_count }} reviews)</span>
+                </div>
+
+                <p class="experience">
+                    {{ astrologer.experience }} years experience
+                </p>
+
+                <div class="skills">
+                    {% for skill in astrologer.skill_list %}
+                        <span>{{ skill }}</span>
+                    {% empty %}
+                        <span>General Astrology</span>
+                    {% endfor %}
+                </div>
+
+                <div class="price">
+                    ₹{{ astrologer.price_per_minute }}
+                    <small>/ minute</small>
+                </div>
+
+                <a href="{% url 'studentapp:profile' astrologer.slug %}"
+                   class="btn-primary full-width">
+                    View Profile →
+                </a>
+            </div>
+
+        </article>
+
+        {% empty %}
+
+        <div class="empty-state">
+            <h2>No astrologers found</h2>
+            <p>Try another search or remove your filters.</p>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% if page_obj.has_other_pages %}
+    <div class="pagination">
+
+        {% if page_obj.has_previous %}
+            <a href="?q={{ search|urlencode }}&skill={{ selected_skill|urlencode }}&availability={{ availability }}&page={{ page_obj.previous_page_number }}">
+                ← Previous
+            </a>
+        {% endif %}
+
+        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+        {% if page_obj.has_next %}
+            <a href="?q={{ search|urlencode }}&skill={{ selected_skill|urlencode }}&availability={{ availability }}&page={{ page_obj.next_page_number }}">
+                Next →
+            </a>
+        {% endif %}
+
+    </div>
+    {% endif %}
+
+</section>
+
+{% endblock %}

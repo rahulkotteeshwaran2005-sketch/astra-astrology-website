@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}ASTRA | Astrology{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'studentapp/index.css' %}">
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+
+    <header class="navbar">
+        <a href="{% url 'studentapp:home' %}" class="logo">
+            ✦ ASTRA
+        </a>
+
+        <nav>
+            <a href="{% url 'studentapp:home' %}">Home</a>
+            <a href="{% url 'studentapp:astrologers' %}">Astrologers</a>
+            <a href="{% url 'studentapp:home' %}">Explore</a>
+
+            {% if user.is_authenticated %}
+                <span>Hi, {{ user.username }}</span>
+                <a href="{% url 'studentapp:logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'studentapp:login' %}">Login</a>
+            {% endif %}
+
+            <a href="{% url 'studentapp:astrologers' %}" class="nav-button">
+                Consult Now
+            </a>
+        </nav>
+    </header>
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <h3>✦ ASTRA</h3>
+        <p>A little cosmic perspective for life's biggest questions.</p>
+        <p>© 2026 ASTRA. For guidance and self-reflection.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+{% extends "studentapp/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="hero-content">
+        <p class="hero-tag">✦ YOUR COSMIC JOURNEY STARTS HERE</p>
+
+        <h1>
+            Discover Your Destiny
+            <span>With Expert Astrologers</span>
+        </h1>
+
+        <p>
+            Get personalized astrology guidance, horoscope readings
+            and meaningful insights from experienced astrologers.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="{% url 'studentapp:astrologers' %}" class="btn-primary">
+                Explore Astrologers
+            </a>
+
+            <a href="{% url 'studentapp:login' %}" class="btn-secondary">
+                Get Started
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="stats">
+    <div>
+        <h2>{{ astrologer_count }}+</h2>
+        <p>Expert Astrologers</p>
+    </div>
+
+    <div>
+        <h2>24/7</h2>
+        <p>Online Guidance</p>
+    </div>
+
+    <div>
+        <h2>100%</h2>
+        <p>Personalized Guidance</p>
+    </div>
+</section>
+
+<section class="featured">
+    <h2>Featured Astrologers</h2>
+    <p>Connect with experienced astrology professionals.</p>
+
+    <a href="{% url 'studentapp:astrologers' %}" class="btn-primary">
+        View All Astrologers
+    </a>
+</section>
+
+{% endblock %}

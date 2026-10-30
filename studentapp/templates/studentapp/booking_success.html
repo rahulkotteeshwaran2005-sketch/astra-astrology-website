@@ -1,0 +1,49 @@
+{% extends "studentapp/base.html" %}
+
+{% block title %}Booking Successful | ASTRA{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="container">
+
+        <div class="card">
+
+            <h1>✨ Booking Submitted!</h1>
+
+            <p>
+                Thank you for choosing ASTRA.
+                Your consultation request has been
+                successfully submitted.
+            </p>
+
+            <h2>🌙 What's Next?</h2>
+
+            <p>
+                Our team will review your booking
+                request and contact you through
+                your registered email or phone.
+            </p>
+
+            <p>
+                Your booking is a request only.
+                No payment or live consultation
+                has been processed.
+            </p>
+
+            <a href="{% url 'studentapp:home' %}"
+               class="btn-primary">
+                Back to Home
+            </a>
+
+            <a href="{% url 'studentapp:astrologers' %}"
+               class="btn-primary">
+                Explore Astrologers
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
